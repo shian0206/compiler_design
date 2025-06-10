@@ -1,0 +1,51 @@
+// test_scopes.sd
+// Tests variable scoping rules.
+
+int globalX = 100;
+
+void printGlobalX() {
+    print "printGlobalX: globalX = ";
+    println globalX;
+}
+
+void main() {
+    int x = 10; // Local to main, shadows nothing yet relevant to direct access
+    println "Main: Start";
+    print "Main: x = "; println x;             // 10
+    print "Main: globalX = "; println globalX; // 100
+    printGlobalX();                          // Accesses globalX
+
+    globalX = 150; // Modify global
+    print "Main: globalX modified to "; println globalX; // 150
+    printGlobalX();
+
+    {
+        int x = 20; // New x, shadows main's x
+        int y = 30; // Local to this block
+        string globalX = "Shadowed Global"; // Shadows global int globalX (for string const)
+
+        println "Inner Block 1: Start";
+        print "Inner Block 1: x (shadowing main's x) = "; println x; // 20
+        print "Inner Block 1: y = "; println y;                      // 30
+        print "Inner Block 1: globalX (string shadow) = "; println globalX; // "Shadowed Global"
+
+        // printGlobalX() will still see the original int globalX due to lexical scoping
+        // of the function definition itself.
+        printGlobalX(); // Will print the int 150
+    }
+
+    println "Main: After Inner Block 1";
+    print "Main: x (main's original x) = "; println x; // 10
+    print "Main: globalX (the int one) = "; println globalX; // 150 (still modified)
+    printGlobalX();
+
+    {
+        // This block does not redefine x, so it sees main's x
+        bool globalX = true; // Shadows the int globalX
+        println "Inner Block 2: Start";
+        print "Inner Block 2: x (from main) = "; println x; // 10
+        print "Inner Block 2: globalX (bool shadow) = "; println globalX; // true
+        printGlobalX(); // Still sees the int 150
+    }
+    println "Main: End";
+}

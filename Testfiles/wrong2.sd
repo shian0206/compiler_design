@@ -1,0 +1,8 @@
+int getBool() {
+    return true;
+}
+
+void main() {
+    int x = getBool();
+}
+

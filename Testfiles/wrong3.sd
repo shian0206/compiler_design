@@ -1,0 +1,12 @@
+int foo() {
+    return 1;
+}
+
+void foo() { 
+    println "Hello";
+}
+
+void main() {
+    foo();
+}
+

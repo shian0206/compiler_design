@@ -1,0 +1,6 @@
+// test_minimal.sd
+// Tests the minimal valid sD program with a main function and a simple output.
+
+void main() {
+    println "Minimal sD program executed!";
+}

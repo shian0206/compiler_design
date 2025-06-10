@@ -1,0 +1,152 @@
+// comprehensive_test.sd
+// A comprehensive test program for the sD language subset.
+// It includes global/local variables, constants, functions,
+// control flow, arithmetic, and logical operations.
+
+// Global constants
+const int MAXITERATIONS = 5;
+const string GREETING = "sD Program Test Suite";
+const bool ENABLEVERBOSE = true;
+
+// Global variable
+int globalAccumulator = 0;
+
+// ----- Function Definitions -----
+
+// Procedure to print a separator
+void printSeparator() {
+    println "------------------------------------";
+}
+
+// Function to calculate factorial (iterative)
+int factorial(int n) {
+    int result = 1;
+    int i;
+    if (n < 0) {
+        println "Factorial error: Negative input not allowed.";
+        return -1; // Indicate error
+    }
+    // Using a for loop for factorial
+    for (i = 1; i <= n; i++) {
+        result = result * i;
+    }
+    return result;
+}
+
+// Function to check if a number is positive
+bool isPositive(int num) {
+    return num > 0;
+}
+
+// Function that uses global variable and calls other functions
+void processNumber(int val) {
+    if (ENABLEVERBOSE) {
+        print "Processing number: ";
+        println val;
+    }
+
+    if (isPositive(val)) {
+        int fact;
+        fact = factorial(val);
+        print "Factorial of ";
+        print val;
+        print " is: ";
+        println fact;
+        globalAccumulator = globalAccumulator + fact;
+    } else {
+        println "Number is not positive, skipping factorial.";
+        globalAccumulator = globalAccumulator - 1; // Penalty for non-positive
+    }
+}
+
+// ----- Main Program -----
+void main() {
+    int localCounter = 0;
+    int loopVar;
+    bool continueLoop = true;
+
+    println GREETING;
+    printSeparator();
+
+    println "Initial globalAccumulator: ";
+    println globalAccumulator; // Should be 0
+
+    // Test simple assignment and arithmetic
+    localCounter = 10 + (2 * 3) - 4 / 2; // 10 + 6 - 2 = 14
+    print "localCounter initialized to: ";
+    println localCounter;
+
+    localCounter++; // 15
+    print "localCounter after increment: ";
+    println localCounter;
+
+    // Test if-else and logical operators
+    if (localCounter > 10 && ENABLEVERBOSE) {
+        println "localCounter is greater than 10 and verbose mode is on.";
+    } else {
+        println "localCounter condition not met (this should not print).";
+    }
+
+    printSeparator();
+    println "Testing While Loop:";
+    // Test while loop
+    loopVar = 0;
+    while (loopVar < 3 && continueLoop) {
+        print "While loop iteration: ";
+        println loopVar;
+        processNumber(loopVar); // Process 0, 1, 2
+        loopVar++;
+        if (loopVar == 2) {
+            // continueLoop = false; // Uncomment to test early exit
+        }
+    }
+    print "globalAccumulator after while loop: "; println globalAccumulator; // 0! + 1! + 2! = 1 + 1 + 2 = 4
+
+    printSeparator();
+    println "Testing For Loop:";
+    // Test for loop (using a different range for processNumber)
+    // Note: sD for loop initial/increment parts do not have their own semicolons
+    int forSum = 0;
+    for (loopVar = MAXITERATIONS; loopVar >= MAXITERATIONS - 2; loopVar--) { // 5, 4, 3
+        print "For loop iteration (desc): ";
+        println loopVar;
+        processNumber(loopVar); // processNumber(5), processNumber(4), processNumber(3)
+        forSum = forSum + loopVar;
+    }
+    print "Sum from for loop variables: "; println forSum; // 5+4+3 = 12
+    print "globalAccumulator after for loop: "; println globalAccumulator; // 4 + 5! + 4! + 3! = 4 + 120 + 24 + 6 = 154
+
+    printSeparator();
+    println "Testing Foreach Loop:";
+    // Test foreach loop
+    int feVar; // Foreach variable needs declaration
+    int foreachSum = 0;
+    foreach (feVar : 1 .. 3) { // 1, 2, 3
+        print "Foreach loop iteration (asc): ";
+        println feVar;
+        // Let's use a different action here
+        if (feVar % 2 == 0) { // If even
+            print feVar;
+            println " is even.";
+            globalAccumulator = globalAccumulator + feVar;
+        } else { // If odd
+            print feVar;
+            println " is odd.";
+            globalAccumulator = globalAccumulator - feVar;
+        }
+        foreachSum = foreachSum + feVar;
+    }
+    print "Sum from foreach loop variables: "; println foreachSum; // 1+2+3 = 6
+    print "globalAccumulator after foreach: "; println globalAccumulator; // 154 - 1 (odd) + 2 (even) - 3 (odd) = 152
+
+
+    printSeparator();
+    println "Final globalAccumulator value: ";
+    println globalAccumulator;
+
+    // Test procedure call style for void function
+    printSeparator(); // Calls the procedure
+
+    println "Program finished.";
+}
+

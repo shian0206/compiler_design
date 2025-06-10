@@ -1,0 +1,120 @@
+// test_floats.sd
+// 此程式用於測試 sD 語言中的浮點數功能。
+
+// 全域浮點數常數
+const float PI = 3.14159;
+
+// 全域浮點數變數
+float globalTemperature = 25.5;
+
+// ----- 函數定義 -----
+
+// 一個簡單的程序，用於打印分隔線
+void printSeparator() {
+    println "-----------------------------------------";
+}
+
+// 計算圓面積的函數
+// 參數: r (float) - 半徑
+// 返回: float - 面積，如果半徑為負則返回 -1.0
+float calculateCircleArea(float r) {
+    if (r < 0.0) {
+        print "Error: Radius (";
+        print r;
+        println ") cannot be negative for area calculation.";
+        return -1.0;
+    }
+    return PI * r * r;
+}
+
+// 將攝氏溫度轉換為華氏溫度的函數
+// 參數: celsius (float) - 攝氏溫度
+// 返回: float - 華氏溫度
+float celsiusToFahrenheit(float celsius) {
+    return (celsius * 9.0 / 5.0) + 32.0;
+}
+
+// ----- 主程式 -----
+void main() {
+    float localValue = 10.5;
+    float calculatedArea;
+    float fahrenheitTemp;
+    float sumOfFloats;
+    float product;
+    printSeparator();
+
+    // 測試打印常數和全域變數
+    print "Constant PI: ";
+    println PI;
+    print "Initial globalTemperature (Celsius): ";
+    println globalTemperature;
+
+    // 修改並打印全域變數
+    globalTemperature = globalTemperature + 2.0; // 25.5 + 2.0 = 27.5
+    print "Updated globalTemperature (Celsius): ";
+    println globalTemperature;
+
+    printSeparator();
+
+    // 測試函數呼叫和浮點數運算
+    println "Circle Area Calculation Test:";
+    calculatedArea = calculateCircleArea(5.0); // PI * 5.0 * 5.0 = 3.14159 * 25.0 approx 78.53975
+    print "Area of circle with radius 5.0: ";
+    println calculatedArea;
+
+    calculatedArea = calculateCircleArea(-2.5); // 測試錯誤情況
+    print "Attempt to calculate area with radius -2.5: ";
+    println calculatedArea; // 應該打印 -1.0
+
+    printSeparator();
+
+    println "Temperature Conversion Test:";
+    fahrenheitTemp = celsiusToFahrenheit(globalTemperature); // (27.5 * 9.0 / 5.0) + 32.0 = (247.5 / 5.0) + 32.0 = 49.5 + 32.0 = 81.5
+    print globalTemperature;
+    print " Celsius is ";
+    print fahrenheitTemp;
+    println " Fahrenheit.";
+
+    fahrenheitTemp = celsiusToFahrenheit(0.0); // 0.0 * 9/5 + 32 = 32.0
+    print "0.0 Celsius is ";
+    print fahrenheitTemp;
+    println " Fahrenheit.";
+
+    printSeparator();
+
+    // 測試基本的浮點數算術運算
+    println "Basic Float Arithmetic:";
+    sumOfFloats = localValue + PI + 0.5; // 10.5 + 3.14159 + 0.5 = 14.14159
+    print "Sum (localValue + PI + 0.5): ";
+    println sumOfFloats;
+
+    product = localValue * 2.5; // 10.5 * 2.5 = 26.25
+    print "Product (localValue * 2.5): ";
+    println product;
+
+    float divisionResult = product / 2.0; // 26.25 / 2.0 = 13.125
+    print "Division (product / 2.0): ";
+    println divisionResult;
+
+    float subtractionResult = sumOfFloats - divisionResult; // 14.14159 - 13.125 = 1.01659
+    print "Subtraction (sumOfFloats - divisionResult): ";
+    println subtractionResult;
+
+    printSeparator();
+
+    // 測試浮點數比較
+    println "Float Comparison Test:";
+    if (PI > 3.0) {
+        println "PI is greater than 3.0 (Correct).";
+    } else {
+        println "PI is NOT greater than 3.0 (Incorrect).";
+    }
+
+    if (globalTemperature == 27.5) {
+        println "globalTemperature is exactly 27.5 (Correct).";
+    }
+
+    // 注意：直接比較浮點數是否相等可能因精度問題而不穩定，但對於此處的賦值應該可行。
+
+    println "End of floating-point tests.";
+}

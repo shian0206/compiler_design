@@ -1,0 +1,47 @@
+// test_arithmetic_logic.sd
+// Tests arithmetic, relational, and logical operators.
+
+void main() {
+    int a = 20;
+    int b = 7;
+    int result;
+    bool condition;
+
+    println "Arithmetic Tests:";
+    result = a + b; // 27
+    print "a + b = "; println result;
+    result = a - b; // 13
+    print "a - b = "; println result;
+    result = a * b; // 140
+    print "a * b = "; println result;
+    result = a / b; // 2 (integer division)
+    print "a / b = "; println result;
+    result = a % b; // 6
+    print "a % b = "; println result;
+
+    result = (a + b) * 2 - a / 5 + (a % b); // (27) * 2 - 4 + 6 = 54 - 4 + 6 = 56
+    print "Complex arithmetic: "; println result;
+
+    a++; // 21
+    b--; // 6
+    print "a after ++: "; println a;
+    print "b after --: "; println b;
+
+
+    println "Relational and Logical Tests:";
+    condition = a > b; // 21 > 6 -> true
+    print "a > b: "; println condition;
+
+    condition = a < b || b == 6; // false || true -> true
+    print "a < b || b == 6: "; println condition;
+
+    condition = a >= 21 && b <= 5; // true && false -> false
+    print "a >= 21 && b <= 5: "; println condition;
+
+    condition = !(a == b); // !(false) -> true
+    print "!(a == b): "; println condition;
+
+    if ( (a + b > 25) && (a % b != 0) ) { // (27 > 25) && (21 % 6 != 0) -> true && (3 != 0) -> true && true -> true
+        println "Condition with arithmetic and logic met.";
+    }
+}

@@ -1,0 +1,52 @@
+// test_control_flow.sd
+// Tests if, else, while, for, foreach statements and nesting.
+
+void main() {
+    int i;
+    int sum = 0;
+
+    println "If-Else Test:";
+    i = 10;
+    if (i > 5) {
+        println "i is greater than 5.";
+        if (i < 15) {
+            println "i is also less than 15.";
+        }
+    } else {
+        println "i is not greater than 5 (this should not print).";
+    }
+
+    println "While Loop Test (sum 0 to 4):";
+    i = 0;
+    sum = 0;
+    while (i < 5) {
+        sum = sum + i;
+        i++;
+    }
+    print "Sum from while: "; println sum; // 0+1+2+3+4 = 10
+
+    println "For Loop Test (sum 1 to 5):";
+    sum = 0;
+    // Note: sD for loop initial/increment parts do not have their own semicolons
+    for (i = 1; i <= 5; i++) {
+        sum = sum + i;
+    }
+    print "Sum from for: "; println sum; // 1+2+3+4+5 = 15
+
+    println "Foreach Loop Test (sum 3 down to 1):";
+    sum = 0;
+    int k; // foreach loop variable needs declaration
+    foreach (k : 3 .. 1) {
+        sum = sum + k;
+        print "k in foreach (desc): "; println k;
+    }
+    print "Sum from foreach (desc): "; println sum; // 3+2+1 = 6
+
+    println "Foreach Loop Test (sum 2 up to 4):";
+    sum = 0;
+    foreach (k : 2 .. 4) {
+        sum = sum + k;
+        print "k in foreach (asc): "; println k;
+    }
+    print "Sum from foreach (asc): "; println sum; // 2+3+4 = 9
+}

@@ -1,0 +1,8 @@
+void main(){
+        int a= 0;
+        bool c = true;
+        bool d = false;
+
+        if(c) print("True");
+        if(d) println("False");
+}

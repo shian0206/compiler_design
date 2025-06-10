@@ -1,0 +1,54 @@
+void main() {
+    println("=== 測試 WHILE 迴圈 ===");
+    
+    // 測試基本 while 迴圈
+    int i = 0;
+    while (i <= 5) {
+        print("i = ");
+        println(i);
+        i = i + 1;
+    }
+    
+     println("=== 測試嵌套 WHILE 迴圈 ===");
+    
+     int x = 0;
+     while (x < 3) {
+         print("外層迴圈 x = ");
+         println(x);
+       
+         int y = 0;
+         while (y < 2) {
+             print("  內層迴圈 y = ");
+             println(y);
+             y = y + 1;
+         }
+        
+         x = x + 1;
+     }
+    
+     println("=== 測試 WHILE 迴圈中的條件 ===");
+    
+     int count = 10;
+     while (count > 0) {
+         if (count == 5) {
+             println("count 到達 5");
+         }
+         count = count - 1;
+     }
+    
+     println("=== 測試布林條件的 WHILE 迴圈 ===");
+     bool flag = true;
+     int counter = 0;
+     while (flag) {
+         if (counter >= 3) 
+         flag = false;
+    
+     else{
+         print("counter = ");
+         println(counter);
+     }
+     counter = counter + 1;
+     }
+    
+     println("=== 所有 WHILE 測試完成 ===");
+}

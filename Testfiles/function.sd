@@ -1,0 +1,59 @@
+// test_functions.sd
+// Tests function definitions, calls, parameters, and return values.
+
+const string FNPREFIX = "FN_TEST: ";
+
+// Procedure (void return)
+void printMessage(string msg) {
+    print FNPREFIX;
+    println msg;
+}
+
+// Function returning int
+int add(int x, int y) {
+    printMessage("Inside add function.");
+    return x + y;
+}
+
+// Function returning bool
+bool isEven(int num) {
+    printMessage("Inside isEven function.");
+    return num % 2 == 0;
+}
+
+// Function calling another function
+int calculate(int a, int b, int c) {
+    int tempSum;
+    tempSum = add(a, b);
+    return add(tempSum, c);
+}
+
+void main() {
+    int sumResult;
+    bool checkEven;
+
+    printMessage("Starting main function tests.");
+
+    sumResult = add(10, 15); // 25
+    print "Result of add(10, 15): ";
+    println sumResult;
+
+    checkEven = isEven(sumResult); // isEven(25) -> false
+    print "Is sumResult even? ";
+    println checkEven;
+
+    checkEven = isEven(add(2,2)); // isEven(4) -> true. Tests function call as argument.
+    print "Is add(2,2) even? ";
+    println checkEven;
+
+    if (isEven(100)) {
+        printMessage("100 is even.");
+    }
+
+    sumResult = calculate(5, 6, 7); // add(5,6) -> 11. add(11,7) -> 18
+    print "Result of calculate(5,6,7): ";
+    println sumResult;
+
+    // Procedure invocation style for void function
+    printMessage("This is a direct procedure call.");
+}

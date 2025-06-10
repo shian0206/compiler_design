@@ -1,0 +1,24 @@
+/* ArrayTest.sd
+ * 使用陣列儲存平方值，並計算總和
+ */
+int squares[5];
+int sum = 0;
+
+int square(int x) {
+    return x * x;
+}
+
+void main() {
+    int i;
+    for (i = 0; i < 5; i++) {
+        squares[i] = square(i);
+    }
+
+    foreach (i : 0 .. 4) {
+        sum = sum + squares[i];
+    }
+
+    print "Sum of squares: ";
+    println sum;
+}
+

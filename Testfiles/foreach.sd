@@ -1,0 +1,121 @@
+void main() {
+    int i;
+    int j;
+    int k;
+    int val;
+
+    println("=== 測試基本 FOREACH (遞增) ===");
+    //預期輸出: 1 2 3 4 5
+    foreach (i : 1 .. 5) {
+        print(i);
+        //print(" ");
+    }
+    println("=== 測試基本 FOREACH (遞增) ===");
+    //println(""); // 換行
+
+    println("=== 測試基本 FOREACH (遞減) ===");
+    // 預期輸出: 5 4 3 2 1
+    foreach (i : 5 .. 1) {
+        print(i);
+        print(" ");
+    }
+    println("=== 測試基本 FOREACH (遞減) ===");
+
+    //println("");
+
+    // 預期輸出: 7
+    foreach (i : 7 .. 7) {
+        print(i);
+        print(" ");
+    }
+    //println("");
+    println("=== 測試 FOREACH (單元素) ===");
+
+
+
+    
+    println("=== 測試 FOREACH (空區間 - 遞增) ===");
+    // 預期輸出: (無輸出)
+    foreach (i : 5 .. 1) { // 這裡 start > end，但預期是遞增邏輯，所以條件不滿足
+        print("SHOULD NOT PRINT");
+    }
+    println(" (空區間遞增測試結束)");
+    println("=== 測試 FOREACH (空區間 - 遞增) ===");
+
+
+    println("=== 測試 FOREACH (空區間 - 遞減) ===");
+    // 預期輸出: (無輸出)
+    foreach (i : 1 .. 5) { // 這裡 start < end，但預期是遞減邏輯，所以條件不滿足
+        print("SHOULD NOT PRINT");
+    }
+    println("=== 測試 FOREACH (空區間 - 遞減) ===");
+
+
+    
+
+
+    println("=== 測試嵌套 FOREACH ===");
+    // 預期輸出:
+    // i=1, j=3
+    // i=1, j=4
+    // i=2, j=3
+    // i=2, j=4
+    foreach (i : 1 .. 2) {
+        foreach (j : 3 .. 4) {
+            print("i=");
+            print(i);
+            print(", j=");
+            print(j);
+            //println("");
+        }
+    }
+    println("=== 測試嵌套 FOREACH ===");
+
+
+
+    println("=== 測試 FOREACH 迭代器變數作用域 ===");
+    val = 100;
+    foreach (val : 1 .. 3) { // 這裡的 val 是 foreacheach 的迭代器
+        print(val);      // 應該輸出 1 2 3
+        print(" ");
+    }
+    println("=== 測試 FOREACH 迭代器變數作用域 ===");
+
+    //println("");
+    print("外部 val 應為 100: ");
+    println(val); // 應該輸出 100 (如果迭代器變數是局部於迴圈的，或者這裡的 val 是不同的變數)
+                  // 根據你的實現，迭代器變數是在外部聲明的，所以這裡的 val 會被修改。
+                  // 預期輸出: 外部 val 應為 100: 4 (如果 val 被修改且最後一次更新是 val=3+1)
+                  // 或者，如果你的作用域處理正確，且迭代器是外部聲明的，那麼 val 的最終值取決於迴圈如何退出。
+                  // 根據標準 foreach 迴圈，迭代器在退出後的值是使其條件為假的值。
+                  // 如果是 val : 1 .. 3 (遞增), 退出時 val 應該是 4。
+    print("外部 val 應為 100: ");
+
+
+
+    println("=== 測試 FOREACH 邊界條件 (start == end) ===");
+    foreach (k : 5 .. 5) {
+        print("k=");
+        println(k); // 預期輸出: k=5
+    }
+    println("=== 測試 FOREACH 邊界條件 (start == end) ===");
+    
+    
+    println("=== 測試 FOREACH 邊界條件 (start > end, 遞減) ===");
+    foreach (k : 3..1) {
+        print(k); // 預期輸出: 3 2 1
+        print(" ");
+    }
+    println("=== 測試 FOREACH 邊界條件 (start > end, 遞減) ===");
+
+
+    println("=== 測試 FOREACH 邊界條件 (start < end, 遞增) ===");
+    foreach (k : 1 .. 3) {
+        print(k); // 預期輸出: 1 2 3
+        print(" ");
+    }
+    println("=== 測試 FOREACH 邊界條件 (start < end, 遞增) ===");
+
+
+    println("=== 所有 FOREACH 測試完成 ===");
+}

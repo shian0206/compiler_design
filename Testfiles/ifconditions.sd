@@ -1,0 +1,54 @@
+//if 多維 邊境會錯
+
+
+void main() {
+    
+   println("=== 測試嵌套 if ===");
+    
+   int score = 85;
+    
+   if (score >= 90) {
+       println("Grade: A");
+   } else {
+       if (score >= 80) {
+           println("Grade: B (score >= 80)");
+       } else {
+           if (score >= 70) {
+               println("Grade: C");
+           } else {
+               if (score >= 60) {
+                   println("Grade: D");
+               } else {
+                   println("Grade: F");
+               }
+           }
+       }
+   }
+    
+    println("=== 測試邊界值 ===");
+    
+    int zero = 0;
+    int positive = 1;
+    int negative = -1;
+    
+    if (zero == 0) {
+        println("zero == 0: TRUE");
+    } else {
+        println("zero == 0: FALSE");
+    }
+    
+    if (positive > 0) {
+        println("positive > 0: TRUE");
+    } else {
+        println("positive > 0: FALSE");
+    }
+    
+    if (negative < 0) {
+        println("negative < 0: TRUE");
+    } else {
+        println("negative < 0: FALSE");
+    }
+    
+    println("=== 所有測試完成 ===");
+}
+

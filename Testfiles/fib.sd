@@ -1,0 +1,24 @@
+/* fib.sd
+ *
+ * This test program computes the Nth Fibonacci number
+ * using recursion and iteration.
+ */
+
+// global variables
+const int n = 8;
+
+// iterative function
+int itFibonacci (int n) {
+  int Fn, FNminus1, temp;
+
+  Fn = 1;
+  FNminus1 = 1;
+  while (n > 2) {
+    temp = Fn;
+    Fn = Fn + FNminus1;
+    FNminus1 = temp;
+    n = n - 1;
+  }
+  return Fn;
+}
+

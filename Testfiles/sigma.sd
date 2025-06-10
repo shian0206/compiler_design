@@ -1,0 +1,28 @@
+/* Sigma.sd
+ *
+ * Compute sum = 1 + 2 + ... + n
+*/
+
+// constant and variables
+const int n = 10;
+int sum = 0;
+
+// main function
+void main() {
+    int index;
+
+    // for loop
+    for (index = 1; index <= n; index++)
+    {
+      sum = sum + index;
+    }
+    print "The sum is ";
+    println sum;
+    // foreach loop
+    foreach (index : n .. 1)
+    {
+      sum = sum + index;
+    }
+    print "The total sum is ";
+    println sum;
+}

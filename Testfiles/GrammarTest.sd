@@ -1,0 +1,67 @@
+/* GrammarTest.sd
+ *
+ * A test program that validates sD syntax rules.
+ */
+
+// Global constant and variables
+const int max = 5;
+const string greeting = "Test";
+float total = 0.0;
+bool flag = false;
+
+// Function to multiply two numbers
+int multiply(int a, int b) {
+    return a * b;
+}
+
+// Void function (procedure) to print a message
+void printMessage() {
+    println "Inside printMessage procedure";
+}
+
+void main() {
+    // Local variable declarations
+    int i = 0, result;
+    float f = 1.5;
+    bool condition = true;
+    const string msg = "Running main";
+
+    // Print initial message
+    print msg;
+    println greeting;
+
+    // Call to function
+    result = multiply(2, 3);
+    println result;
+
+    // if-else statement
+    if (result > 5) {
+        print "Greater than 5";
+    } else {
+        print "Not greater than 5";
+    }
+
+    // while loop
+    while (i < max) {
+        total = total + i;
+        i++;
+    }
+
+    // for loop
+    for (i = 0; i < max; i++) {
+        total = total + i;
+    }
+
+    // foreach loop
+    foreach (i : 1 .. 3) {
+        println i;
+    }
+
+    // Procedure invocation
+    printMessage();
+
+    // Final output
+    print "Final total: ";
+    println total;
+}
+
